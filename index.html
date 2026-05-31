@@ -3,120 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>無料教材・アプリ一覧</title>
+  <title>算数アプリ</title>
+
   <style>
     body {
       font-family: sans-serif;
       background: #f7f7f7;
       margin: 0;
-      padding: 24px;
+      padding: 20px;
       color: #333;
     }
 
     .container {
-      max-width: 700px;
+      max-width: 820px;
       margin: 0 auto;
-      background: white;
+      background: #ffffff;
       padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
 
     h1 {
-      font-size: 26px;
       text-align: center;
-      margin-bottom: 8px;
+      font-size: 30px;
+      margin: 0 0 10px;
     }
 
     .lead {
       text-align: center;
       color: #666;
+      line-height: 1.7;
       margin-bottom: 28px;
-      line-height: 1.6;
     }
 
     h2 {
-      font-size: 20px;
-      margin-top: 28px;
-      margin-bottom: 12px;
-      border-left: 6px solid #f0d98c;
-      padding-left: 10px;
+      font-size: 22px;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      padding-left: 12px;
+      border-left: 8px solid #f0c94d;
     }
 
-    .link-card {
-      display: block;
-      background: #fff7df;
-      border: 2px solid #f0d98c;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
+    .app-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff9e8;
+      border: 2px solid #efd27a;
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 14px;
       text-decoration: none;
       color: #333;
-      font-size: 18px;
-      font-weight: bold;
+      transition: 0.15s;
     }
 
-    .link-card:hover {
-      background: #fff0bf;
+    .app-card:hover {
+      background: #fff1c6;
+      transform: translateY(-2px);
+    }
+
+    .app-card img {
+      width: 150px;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+
+    .app-title {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    .app-sub {
+      font-size: 14px;
+      color: #666;
+      margin-top: 4px;
+      font-weight: normal;
     }
 
     .note {
-      font-size: 14px;
-      color: #777;
       text-align: center;
-      margin-top: 28px;
-      line-height: 1.6;
+      color: #777;
+      font-size: 14px;
+      margin-top: 30px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 12px;
+      }
+
+      .container {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .app-card {
+        gap: 12px;
+        padding: 10px;
+      }
+
+      .app-card img {
+        width: 110px;
+        height: 78px;
+      }
+
+      .app-title {
+        font-size: 17px;
+      }
+
+      .app-sub {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>無料教材・アプリ一覧</h1>
+    <h1>算数アプリ</h1>
+
     <p class="lead">
-      家庭学習・授業・個別支援で使える教材です。<br>
-      使いたい教材をタップしてください。
+      家庭学習・授業・個別支援で使える無料教材です。<br>
+      使いたいアプリをタップしてください。
     </p>
 
-    <h2>算数</h2>
+    <h2>かず</h2>
 
-    <a class="link-card" href="https://icoaplus.github.io/make-10-blocks/">
-      10を作ろう
+    <a class="app-card" href="https://icoaplus.github.io/make-10-blocks/">
+      <img src="images/make-10-blocks.png" alt="10を作ろう">
+      <div>
+        <div class="app-title">10を作ろう</div>
+        <div class="app-sub">10の合成をブロックで学習します</div>
+      </div>
     </a>
 
-    <a class="link-card" href="https://icoaplus.github.io/math-addition/">
-      １０までの たしざん
+    <a class="app-card" href="https://icoaplus.github.io/math-addition/">
+      <img src="images/math-addition.png" alt="１０までの たしざん">
+      <div>
+        <div class="app-title">１０までの たしざん</div>
+        <div class="app-sub">ブロックを使ってたし算を練習します</div>
+      </div>
     </a>
 
-    <a class="link-card" href="https://icoaplus.github.io/applebanana/">
-      10までの たしざん（くだもの）
+    <a class="app-card" href="https://icoaplus.github.io/applebanana/">
+      <img src="images/applebanana.png" alt="10までの たしざん（くだもの）">
+      <div>
+        <div class="app-title">10までの たしざん（くだもの）</div>
+        <div class="app-sub">りんごとバナナでたし算を練習します</div>
+      </div>
     </a>
 
-    <a class="link-card" href="https://icoaplus.github.io/subtraction-within-10-blocks.index/">
-      １０までの ひきざん
+    <a class="app-card" href="https://icoaplus.github.io/subtraction-within-10-blocks.index/">
+      <img src="images/subtraction-within-10-blocks.png" alt="１０までの ひきざん">
+      <div>
+        <div class="app-title">１０までの ひきざん</div>
+        <div class="app-sub">ブロックを消しながらひき算を練習します</div>
+      </div>
     </a>
 
-    <a class="link-card" href="https://icoaplus.github.io/subtraction-within-10-apples/">
-      １０までの ひきざん（くだもの）
+    <a class="app-card" href="https://icoaplus.github.io/subtraction-within-10-apples/">
+      <img src="images/subtraction-within-10-apples.png" alt="１０までの ひきざん（くだもの）">
+      <div>
+        <div class="app-title">１０までの ひきざん（くだもの）</div>
+        <div class="app-sub">くだものを使ってひき算を練習します</div>
+      </div>
     </a>
 
-    <h2>時計</h2>
+    <h2>とけい</h2>
 
-    <a class="link-card" href="https://icoaplus.github.io/reading-clock-hour/">
-      とけい なんじ？
+    <a class="app-card" href="https://icoaplus.github.io/reading-clock-hour/">
+      <img src="images/reading-clock-hour.png" alt="とけい なんじ？">
+      <div>
+        <div class="app-title">とけい なんじ？</div>
+        <div class="app-sub">ちょうどの時刻を読む練習をします</div>
+      </div>
     </a>
 
-    <a class="link-card" href="https://icoaplus.github.io/reading-clock-half-hour/">
-      とけい なんじはん？
+    <a class="app-card" href="https://icoaplus.github.io/reading-clock-half-hour/">
+      <img src="images/reading-clock-half-hour.png" alt="とけい なんじはん？">
+      <div>
+        <div class="app-title">とけい なんじはん？</div>
+        <div class="app-sub">○時半の読み方を練習します</div>
+      </div>
     </a>
 
-    <a class="link-card" href="https://icoaplus.github.io/time-elapsed-clock/">
-      とけい じこくと じかん
+    <a class="app-card" href="https://icoaplus.github.io/time-elapsed-clock/">
+      <img src="images/time-elapsed-clock.png" alt="とけい じこくと じかん">
+      <div>
+        <div class="app-title">とけい じこくと じかん</div>
+        <div class="app-sub">時刻と時間の関係を学習します</div>
+      </div>
     </a>
 
     <h2>プログラミング</h2>
 
-    <a class="link-card" href="https://icoaplus.github.io/programming-practice/">
-      ゴールできるかな
+    <a class="app-card" href="https://icoaplus.github.io/programming-practice/">
+      <img src="images/programming-practice.png" alt="ゴールできるかな">
+      <div>
+        <div class="app-title">ゴールできるかな</div>
+        <div class="app-sub">命令を並べてゴールを目指します</div>
+      </div>
     </a>
 
     <p class="note">
