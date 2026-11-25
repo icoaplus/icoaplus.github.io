@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f6ef">
+<title>列にならぶ数｜かけ算の意味③</title>
+<style>
+:root{--cream:#f7f6ef;--green:#356852;--green-dark:#174b40;--green-pale:#eaf1e5;--line:#dce5d7;--orange:#c45b1b;--ink:#173c36;--muted:#71857a;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"UD デジタル 教科書体 N-R","BIZ UDPGothic","Yu Gothic",sans-serif}
+main{max-width:1100px;margin:auto;padding:24px clamp(16px,4vw,38px) 34px}
+.kicker{font-size:15px;font-weight:700;letter-spacing:.12em;color:#64816e;margin:0 0 7px}
+h1{font-size:clamp(27px,4vw,40px);margin:0;font-weight:800;letter-spacing:.04em}
+.lead{margin:10px 0 21px;color:#6d8276;font-size:17px}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:20px 22px;margin:15px 0;box-shadow:0 3px 12px #274b3610}
+.panel h2{font-size:19px;margin:0 0 15px}
+.settings{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:14px;align-items:stretch}
+.setting{border:1px solid var(--line);border-radius:18px;padding:15px;background:#fbfcf8}
+.setting-label{font-size:15px;font-weight:700;color:#587361;margin-bottom:10px}
+.stepper{display:flex;align-items:center;gap:12px}
+.stepper button{width:42px;height:42px;border-radius:13px;border:1px solid #cad9cb;background:#f3f7f0;font-size:25px;color:var(--green);font-weight:700;cursor:pointer}
+.stepper button:active,.object:active,.reveal:active{transform:scale(.97)}
+.value{min-width:53px;text-align:center;font-size:26px;font-weight:800}
+.value small{font-size:15px;margin-left:3px}
+.objects{display:flex;gap:8px;flex-wrap:wrap}
+.object{border:2px solid #e1e8dc;background:#fff;border-radius:14px;width:48px;height:48px;font-size:28px;cursor:pointer}
+.object.selected{border-color:#4d876e;background:#edf4e8;box-shadow:0 0 0 2px #dcebdd}
+.visual{padding:0;overflow:hidden}
+.visual-head{padding:17px 22px;border-bottom:1px solid #edf0e9;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.visual-head h2{margin:0}
+.hint{font-size:14px;color:var(--muted);text-align:right}
+.rows{padding:18px 20px 22px;display:grid;gap:10px}
+.row{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:12px;min-height:62px}
+.row-label{color:#728679;font-size:14px;font-weight:700;text-align:right}
+.row-items{display:flex;align-items:center;gap:clamp(7px,2vw,16px);min-height:60px;padding:6px 13px;border-radius:15px;border:1px solid transparent}
+.row:first-child .row-items{background:#f0f6eb;border-color:#cbdcc5}
+.fruit{font-size:clamp(28px,4vw,39px);line-height:1}
+.unit-tag{font-size:13px;color:#607c68;margin-left:2px;white-space:nowrap}
+.equation{background:var(--green-pale);border-color:#d5e1cf}
+.eq-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1.1fr;align-items:center;gap:clamp(8px,2vw,20px);text-align:center}
+.eq-part{min-width:0}
+.eq-label{font-size:15px;font-weight:700;color:#647d69;margin-bottom:7px}
+.reveal{border:0;border-bottom:2px solid transparent;background:transparent;color:var(--ink);padding:1px 5px 4px;font:inherit;font-size:clamp(24px,4vw,34px);font-weight:800;cursor:pointer;border-radius:8px}
+.reveal.hidden{color:#8b9e8e;border-bottom-color:#a9b9a8;min-width:68px}
+.eq-symbol{font-size:34px;color:#83998a;font-weight:500}
+.total .reveal{color:var(--orange)}
+.total .reveal.hidden{color:#8b9e8e}
+.explain{border-top:1px solid #d2dfce;margin-top:18px;padding-top:13px;font-size:17px;font-weight:700;color:#647b6e}
+.addends{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px}
+.addends .reveal{font-size:22px;min-width:34px}
+.addends .reveal.hidden{min-width:44px}
+.prompt{text-align:center;margin:15px 0 0;color:#688271;font-size:16px}
+.all-button{display:block;margin:13px auto 0;border:0;border-radius:12px;background:var(--green);color:#fff;padding:11px 21px;font-size:16px;font-weight:700;cursor:pointer}
+.all-button:hover{background:#285740}
+@media(max-width:760px){main{padding-top:18px}.settings{grid-template-columns:1fr 1fr}.setting:last-child{grid-column:1/-1}.panel{padding:17px}.visual-head{align-items:flex-start;flex-direction:column}.hint{text-align:left}.row{grid-template-columns:54px 1fr;gap:6px}.row-label{font-size:12px}.row-items{gap:7px;padding:5px 8px;flex-wrap:wrap}.unit-tag{font-size:11px}}
+@media(max-width:480px){.eq-grid{gap:4px}.eq-label{font-size:12px}.eq-symbol{font-size:25px}.reveal{font-size:24px}.eq-part{min-width:0}.reveal.hidden{min-width:47px}.addends{gap:1px}.addends .reveal{font-size:18px;min-width:27px}.addends .reveal.hidden{min-width:32px}.panel{border-radius:19px}.setting{padding:12px}.object{width:43px;height:43px}.row-items{min-height:54px}}
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">みて わかる かけざん</p>
+  <h1>列にならぶ数</h1>
+  <p class="lead">1列分の数と、列の数から、ぜんぶの数を考えよう。</p>
+
+  <section class="panel">
+    <h2>ならびをつくろう</h2>
+    <div class="settings">
+      <div class="setting">
+        <div class="setting-label">1列分の数</div>
+        <div class="stepper">
+          <button type="button" data-change="perRow" data-step="-1" aria-label="1列分の数をへらす">−</button>
+          <div class="value"><span id="perRowValue">4</span><small>こ</small></div>
+          <button type="button" data-change="perRow" data-step="1" aria-label="1列分の数をふやす">＋</button>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting-label">列の数</div>
+        <div class="stepper">
+          <button type="button" data-change="rows" data-step="-1" aria-label="列の数をへらす">−</button>
+          <div class="value"><span id="rowsValue">3</span><small>列</small></div>
+          <button type="button" data-change="rows" data-step="1" aria-label="列の数をふやす">＋</button>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting-label">ならべるもの</div>
+        <div class="objects" id="objects" aria-label="ならべるものを選ぶ"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel visual">
+    <div class="visual-head">
+      <h2 id="visualTitle">1列に4こずつ、3列にならんでいるよ</h2>
+      <div class="hint">1列目を見てから、同じ列がいくつあるか数えよう。</div>
+    </div>
+    <div class="rows" id="rows" aria-live="polite"></div>
+  </section>
+
+  <section class="panel equation">
+    <div class="eq-grid">
+      <div class="eq-part">
+        <div class="eq-label">1列分の数</div>
+        <button class="reveal hidden" type="button" data-key="perRow" aria-label="1列分の数を表示">？</button>
+      </div>
+      <div class="eq-symbol" aria-hidden="true">×</div>
+      <div class="eq-part">
+        <div class="eq-label">列の数</div>
+        <button class="reveal hidden" type="button" data-key="rows" aria-label="列の数を表示">？</button>
+      </div>
+      <div class="eq-symbol" aria-hidden="true">＝</div>
+      <div class="eq-part total">
+        <div class="eq-label">ぜんぶの数</div>
+        <button class="reveal hidden" type="button" data-key="total" aria-label="ぜんぶの数を表示">？</button>
+      </div>
+    </div>
+    <div class="explain">
+      <span>たし算で見ると：</span>
+      <span class="addends" id="addends"></span>
+    </div>
+    <p class="prompt">数字をタップすると、その数が見えるよ。まずは絵を見て考えてみよう。</p>
+    <button class="all-button" type="button" id="showAll">答えをすべて見る</button>
+  </section>
+</main>
+<script>
+(function(){
+  const choices=[{icon:"🍎",name:"りんご"},{icon:"🍩",name:"ドーナツ"},{icon:"🍡",name:"だんご"},{icon:"🍪",name:"クッキー"},{icon:"🌸",name:"花"},{icon:"⭐",name:"星"}];
+  let perRow=4, rows=3, item=choices[0];
+  let shown={perRow:false,rows:false,total:false,addends:[]};
+  const objects=document.getElementById("objects");
+  const rowBox=document.getElementById("rows");
+  const addends=document.getElementById("addends");
+  function clearAnswers(){shown={perRow:false,rows:false,total:false,addends:[]};}
+  function revealButton(key,label,value,unit){
+    const btn=document.createElement("button");
+    btn.type="button";btn.className="reveal"+(shown[key]?"":" hidden");
+    btn.textContent=shown[key]?String(value)+unit:"？";
+    btn.setAttribute("data-key",key);
+    btn.setAttribute("aria-label",shown[key]?label+" "+value+unit:label+"を表示");
+    return btn;
+  }
+  function renderObjects(){
+    objects.innerHTML="";
+    choices.forEach(function(choice){
+      const b=document.createElement("button");
+      b.type="button";b.className="object"+(choice===item?" selected":"");
+      b.textContent=choice.icon;b.title=choice.name;b.setAttribute("aria-label",choice.name);
+      b.setAttribute("aria-pressed",choice===item?"true":"false");
+      b.addEventListener("click",function(){item=choice;clearAnswers();render();});
+      objects.appendChild(b);
+    });
+  }
+  function renderRows(){
+    rowBox.innerHTML="";
+    for(let r=0;r<rows;r++){
+      const row=document.createElement("div");row.className="row";
+      const label=document.createElement("div");label.className="row-label";label.textContent=(r+1)+"列目";
+      const things=document.createElement("div");things.className="row-items";
+      for(let c=0;c<perRow;c++){
+        const icon=document.createElement("span");icon.className="fruit";icon.textContent=item.icon;icon.setAttribute("aria-hidden","true");
+        things.appendChild(icon);
+      }
+      if(r===0){const tag=document.createElement("span");tag.className="unit-tag";tag.textContent="← 1列分";things.appendChild(tag);}
+      row.appendChild(label);row.appendChild(things);rowBox.appendChild(row);
+    }
+  }
+  function renderEquation(){
+    const unit=document.querySelector('[data-key="perRow"]');
+    const count=document.querySelector('[data-key="rows"]');
+    const total=document.querySelector('[data-key="total"]');
+    [unit,count,total].forEach(function(old){old.replaceWith(revealButton(old.getAttribute("data-key"),old.getAttribute("aria-label").replace("を表示",""),old.getAttribute("data-key")==="perRow"?perRow:(old.getAttribute("data-key")==="rows"?rows:perRow*rows),old.getAttribute("data-key")==="perRow"?"こ":(old.getAttribute("data-key")==="rows"?"列":"こ")));});
+    addends.innerHTML="";
+    for(let i=0;i<rows;i++){
+      if(i>0){const plus=document.createElement("span");plus.textContent="＋";plus.setAttribute("aria-hidden","true");addends.appendChild(plus);}
+      const btn=document.createElement("button");btn.type="button";
+      btn.className="reveal"+(shown.addends[i]?"":" hidden");
+      btn.textContent=shown.addends[i]?String(perRow):"？";
+      btn.setAttribute("data-addend",String(i));
+      btn.setAttribute("aria-label",shown.addends[i]?"たし算の "+(i+1)+"つめ "+perRow+"こ":"たし算の "+(i+1)+"つめを表示");
+      addends.appendChild(btn);
+    }
+    const equal=document.createElement("span");equal.textContent="＝";equal.setAttribute("aria-hidden","true");addends.appendChild(equal);
+    const sum=document.createElement("span");sum.className="total";sum.textContent=shown.total?String(perRow*rows)+"こ":"？こ";addends.appendChild(sum);
+  }
+  function render(){
+    document.getElementById("perRowValue").textContent=perRow;
+    document.getElementById("rowsValue").textContent=rows;
+    document.getElementById("visualTitle").textContent="1列に"+perRow+"こずつ、"+rows+"列にならんでいるよ";
+    renderObjects();renderRows();renderEquation();
+  }
+  document.addEventListener("click",function(e){
+    const step=e.target.closest("[data-change]");
+    if(step){
+      const key=step.getAttribute("data-change"), delta=Number(step.getAttribute("data-step"));
+      if(key==="perRow")perRow=Math.max(1,Math.min(6,perRow+delta));
+      if(key==="rows")rows=Math.max(1,Math.min(5,rows+delta));
+      clearAnswers();render();return;
+    }
+    const key=e.target.closest("[data-key]");
+    if(key){shown[key.getAttribute("data-key")]=true;renderEquation();return;}
+    const add=e.target.closest("[data-addend]");
+    if(add){shown.addends[Number(add.getAttribute("data-addend"))]=true;renderEquation();return;}
+    if(e.target.closest("#showAll")){shown.perRow=true;shown.rows=true;shown.total=true;shown.addends=Array(rows).fill(true);renderEquation();}
+  });
+  render();
+})();
+</script>
+</body>
+</html>
